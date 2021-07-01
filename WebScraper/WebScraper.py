@@ -22,7 +22,7 @@ def testSoup(soup):
 
 
 
-# Creates the list of teacher name and their grades : returns dictionary
+# Creates the list of teacher name and their grades : returns list
 def getGradeDic(soup):
     ls = []
     count = 0
@@ -116,6 +116,7 @@ def getRMPLinkDRIVER(name):
 
     return link
 
+# Gets the RMP link : returns link
 def getRMPLink(name):
 
     name = name.replace(' ','+')
@@ -138,10 +139,10 @@ def getRMPLink(name):
     return link
 
 
-# Used to loop through all teachers and attach their RMP scores to them : returns new dic
-def getRMPRating(ls):
+# Used to loop through all teachers and attach their RMP scores to them : returns new list
+def getRMPRating(dic):
 
-    for teacher in ls:
+    for teacher in dic:
         link = getRMPLink(teacher[0])
         page = requests.get(link)
         soup = BeautifulSoup(page.content, "html.parser")
@@ -167,7 +168,8 @@ def getRMPRating(ls):
         teacher[1].append(difficulty)
     
     return dic
-        
+
+# Ranks and prints out the teachers by their scores : returns nothing
 def rankTeachers(dic):
 
     ranking = []
